@@ -1,3 +1,4 @@
+<%@page import="hj.event.ReservationSearchDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -48,6 +49,11 @@
 		<!-- 안에 글넣는 하얀 박스-->
 		<div id="reviewbox">
            <h2>예약이 취소 되었습니다.</h2>
+           <%
+           		int r_id=Integer.parseInt(request.getParameter("r_id"));
+           		ReservationSearchDAO rdao = new ReservationSearchDAO();
+           		rdao.reservationCancel(r_id);
+           %>
            <a href="reservation.jsp?event_number=<%=session.getAttribute("event_number")%>">다시 예약하러 가기</a>
         </div>
 	 </div>

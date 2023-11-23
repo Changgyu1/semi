@@ -21,7 +21,7 @@
     %>
 	 	<button type="button" onclick="location.href='logout.jsp'" style="background:none;border:none;width:75px;">로그아웃</button>
 	 	 <h>|</h>
-	    <button type="button" onclick="location.href='mypageServlet?email=<%=session.getAttribute("email")%>'" style="background:none;border:none;width:100px;">마이페이지</button>
+	    <button type="button" onclick="location.href='mypage.jsp?email=<%=session.getAttribute("email")%>'" style="background:none;border:none;width:100px;">마이페이지</button>
 	 <%
 	 }else{
 	 %>
@@ -51,7 +51,7 @@
 			int r_id=Integer.parseInt(request.getParameter("r_id"));
 		%>
 		<div id="reviewbox">
-            <form action="reservationCancel" method="post">
+            <form action="reservation_cancel_success.jsp" method="post">
 	        	<p>예약을 취소하시겠습니까?</p>
 	        	<input type="hidden" name="r_id" value="<%=r_id%>">
 	        	<input type="submit" value="취소하기">

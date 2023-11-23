@@ -1,3 +1,4 @@
+<%@page import="hj.event.ReservationSearchDAO"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="hj.event.ReservationDTO" %>
 <%@page import=" java.util.List" %>
@@ -22,13 +23,13 @@
    
     
     <!--로그인 버튼-->
-	 <div style="text-align: right; width: 1215px;">
+ 	 <div style="text-align: right; width: 1215px;">
     <%
     if(session.getAttribute("email")!=null){
     %>
 	 	<button type="button" onclick="location.href='logout.jsp'" style="background:none;border:none;width:75px;">로그아웃</button>
 	 	 <h>|</h>
-	    <button type="button" onclick="location.href='mypageServlet?email=<%=session.getAttribute("email")%>'" style="background:none;border:none;width:100px;">마이페이지</button>
+	    <button type="button" onclick="location.href='mypage.jsp?email=<%=session.getAttribute("email")%>'" style="background:none;border:none;width:100px;">마이페이지</button>
 	 <%
 	 }else{
 	 %>
@@ -56,10 +57,13 @@
 	    
 		     <div>
 		     	<%
-					String email = (String) session.getAttribute("email");
+									
+					ReservationSearchDAO rdao = new ReservationSearchDAO();
+				    String email = (String) session.getAttribute("email");
 					String name = (String) session.getAttribute("name");	
 					String phonenumber = (String) session.getAttribute("phonenumber");
-				%>
+				    List<ReservationDTO> rdto = rdao.mypage(email, request);
+				  %>
 				
 				<p> 이메일: <%=email %></p>
 				<p> 이름: <%=name %></p>
@@ -79,7 +83,7 @@
 					<th>총액</th>
 				</tr>
 				<%
-			    List<ReservationDTO> rdto = (List<ReservationDTO>) request.getAttribute("rdto");
+			
 			
 			    for(ReservationDTO reservation : rdto){
 			%>

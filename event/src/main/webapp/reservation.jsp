@@ -22,7 +22,7 @@
 	 	<button type="button" onclick="location.href='logout.jsp'" style="width:75px;">로그아웃</button>
 	 	 <h>|</h>
 	    <button type="button"
-				onclick="location.href='mypageServlet?email=<%=session.getAttribute("email")%>'"
+				onclick="location.href='mypage.jsp?email=<%=session.getAttribute("email")%>'"
 				style="width: 100px;">마이페이지</button>
 	 <%
     	}else{
@@ -52,7 +52,7 @@
 		<h2 style="padding-top:15px">예약</h2>
 		<!-- 안에 글넣는 하얀 박스-->
 		<div id="reviewbox">
-            <form action="reservationServlet" method="post">
+            <form action="reservation_success.jsp" method="post">
 	        <label for="person">인원수: </label>
 	        <input type="text" id="person" name="person" required>
 	        <br>
