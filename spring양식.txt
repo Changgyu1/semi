@@ -1,0 +1,12 @@
+1. spring-DB-Oracle-pre 스프링 프로젝트 생성
+2. select 문 조회하는 내용 출력
+
+application.properties db 연결해주는 설정
+
+ model - Board.java
+src/main/resoucres/mapper/BoardMapper.xml
+mapper - BoardMapper.java
+service - BoardService.java
+controller - BoardController.java
+templates - boardList.html
+SpringDbOracleApplication - @MapperScan 어노테이션 추가해서 경로 설정
