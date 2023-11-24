@@ -251,5 +251,34 @@ public class ReservationSearchDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	public String registerEmailCheck(String email) {
+        String redirectURL =null;
+		try {
+			Connection connection = DriverManager.getConnection(jdbcURL, jdbcUserName, jdbcPassword);
+			String sql = "SELECT email FROM USERS WHERE email = ?";
+
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, email);
+            ResultSet rs = preparedStatement.executeQuery();
+            int isNull = 0;
+    
+            
+            if (rs.next()) {
+            	isNull = 2;
+            	System.out.println("isTrue :" +isNull);
+                redirectURL = "join.jsp?isTrue="+isNull;
+            } else {
+            	isNull=1;
+            	System.out.println("isTrue :" +isNull);
+            	redirectURL = "join.jsp?email=" + email + "&isTrue=" + isNull;
+            }
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return redirectURL;
+	}
+	
 
 }

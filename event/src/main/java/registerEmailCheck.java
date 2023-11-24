@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import hj.event.ReservationSearchDAO;
+
 
 @WebServlet("/registerEmailCheck")
 public class registerEmailCheck extends HttpServlet {
@@ -21,7 +23,7 @@ public class registerEmailCheck extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String jdbcURL = "jdbc:oracle:thin:@localhost:1521:xe";
+       /* String jdbcURL = "jdbc:oracle:thin:@localhost:1521:xe";
         String jdbcUsername = "kiga";
         String jdbcPassword = "kiga1234";
 
@@ -52,6 +54,11 @@ public class registerEmailCheck extends HttpServlet {
 
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
-        }
+        }*/
+        String email = request.getParameter("email");
+    	ReservationSearchDAO rdao =new ReservationSearchDAO();
+    	String redirectURL = rdao.registerEmailCheck(email);
+    	//System.out.println(redirectURL);
+    	response.sendRedirect(redirectURL);
     }
 }
