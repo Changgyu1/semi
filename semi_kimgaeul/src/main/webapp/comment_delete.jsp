@@ -68,12 +68,12 @@
 				<h6>취소하기를 누를 시 후기 게시판 메인으로 이동합니다.</h6> 
 				
 				<!-- 삭제 비밀번호 전송 폼 -->
-					<form action="deletecommentDAO" method="post">
-						<input type="password" name="commentpw" style="border:1px solid gray; border-radius:2px;width:80px;height:25px;text-align:center;" placeholder="비밀번호">
+					<form action="Review_Servlet" method="post">
+						<input type="password" name="comment_password" style="border:1px solid gray; border-radius:2px;width:80px;height:25px;text-align:center;" placeholder="비밀번호">
 						<br>
 						<br>
-						<input type="hidden" name=conum value="<%=request.getParameter("conum")%>">
-						<button type="submit" style="font-size:14px;border:1px solid gray; width:70px;border-radius:3px;height:25px;" >삭제하기</button>
+						<input type="hidden" name=comment_number value="<%=request.getParameter("conum")%>">
+						<input type="submit" name="commentdelete" value="댓글삭제하기" style="font-size:14px;border:1px solid gray; width:70px;border-radius:3px;height:25px;" >
 					</form>
 				<br>
 				<button type="button" style="border:1px solid gray; width:70px;border-radius:3px;height:25px;" onclick="location.href='review_list.jsp'">취소하기</button>

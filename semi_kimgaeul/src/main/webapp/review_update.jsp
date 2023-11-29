@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-    <%@ page import="gaeul.review.festivalDTO" %>
 
 <!DOCTYPE html>
 <html>
@@ -13,8 +12,6 @@
 
 
 	<% 
-	festivalDTO dto = new festivalDTO();
-	//int num=Integer.parseInt(request.getParameter("reviewnumber"));
 	int rnum = Integer.parseInt(request.getParameter("rnum"));
 	%>
 
@@ -54,16 +51,16 @@
 	
 	<div id="background" style="height:530px;">
 			<div id="reviewbox" >
-				<form action="UpdateDAO" method="post">
+				<form action="Review_Servlet" method="post">
 				<h4>리뷰 수정하기</h4>
-				<input type="hidden" name="rnum" value="<%=rnum%>">
-				<input type="text" name="updateTitle" style="text-align:center; height:30px;width:500px;border:1px solid gray;" required placeholder="제목을 입력해주세요.">
+				<input type="hidden" name="review_number" value="<%=rnum%>">
+				<input type="text" name="review_title" style="text-align:center; height:30px;width:500px;border:1px solid gray;" required placeholder="제목을 입력해주세요.">
 				<br> 
 				<br> 
-				<input type="text" name="updateReview" style="text-align:center; width:500px;height:250px;border:1px solid gray;" required placeholder="내용을 입력해주세요.">
+				<input type="text" name="review" style="text-align:center; width:500px;height:250px;border:1px solid gray;" required placeholder="내용을 입력해주세요.">
 				<br> 
 				<br> 
-				<button type="submit" style="background-color:lightgray;border:1px solid gray;width:100px;">등록하기</button>
+				<input type="submit" name="reviewupdate" value="리뷰수정하기" style="background-color:lightgray;border:1px solid gray;width:100px;">
 				</form>
 			</div>
 		</div>

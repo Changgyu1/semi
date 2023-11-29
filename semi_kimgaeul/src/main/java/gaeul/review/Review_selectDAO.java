@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 
 
 
-public class selectDAO  {
+public class Review_selectDAO  {
 
 	private String url ="jdbc:oracle:thin:@localhost:1521:xe";
 	private String user="kiga";
@@ -22,7 +22,7 @@ public class selectDAO  {
 	private Connection con;
 	private PreparedStatement ps;
 	
-	public selectDAO() {
+	public Review_selectDAO() {
 		try {
 			Class.forName("oracle.jdbc.OracleDriver");
 		} catch (ClassNotFoundException e) {
@@ -31,8 +31,8 @@ public class selectDAO  {
 	}
 	
 	
-	//리뷰 제목으로 검색
-public ArrayList<festivalDTO> listreview(int review_number) {
+	//리뷰번호로 검색 조회
+	public ArrayList<festivalDTO> listreview(int review_number) {
 	
 		ArrayList<festivalDTO> reviewlist= new ArrayList<festivalDTO>();
 		
@@ -79,7 +79,7 @@ public ArrayList<festivalDTO> listreview(int review_number) {
 		return reviewlist;
 	}
 
-
+//이벤트 번호로 검색 조회
 public ArrayList<festivalDTO> searchlist (int event_number) {
 	
 	ArrayList<festivalDTO> searchlist= new ArrayList<festivalDTO>();
@@ -127,7 +127,7 @@ public ArrayList<festivalDTO> searchlist (int event_number) {
 	return searchlist;
 }
 
-
+//리뷰 리스트 항상 조회
 	public ArrayList<festivalDTO> List(){
 		ArrayList<festivalDTO> list = new ArrayList<festivalDTO>();
 		
@@ -171,6 +171,7 @@ public ArrayList<festivalDTO> searchlist (int event_number) {
 		return list;
 	}
 
+	//리뷰 좋아요한 사람 조회
 	public ArrayList<reviewlikeDTO> likenumber(int review_number) {
 		 ArrayList<reviewlikeDTO> likenumber = new ArrayList<>();
 		try {
@@ -204,13 +205,13 @@ public ArrayList<festivalDTO> searchlist (int event_number) {
 
 	
 
-	
+	//좋아요 숫자 조회
 	public int likecount(int review_number) {
 		 int likecount = 0 ;
 		try {
 			System.out.println("보자보자 ~~"+review_number);
 			con=DriverManager.getConnection(url, user, pw);
-			String sql="select count(review_number) as likecount from kiga_like where review_number=? ";
+			String sql="select count(distinct name) as likecount from kiga_like where review_number=? ";
 			ps=con.prepareStatement(sql);
 			ps.setInt(1, review_number);
 			ResultSet rs = 	ps.executeQuery();
@@ -229,6 +230,82 @@ public ArrayList<festivalDTO> searchlist (int event_number) {
 			e.printStackTrace();
 		}
 		return likecount;
+	}
+	
+	
+	//댓글 좋아요 수 조회
+	public int commentlikecount(int comment_number) {
+		 int likecount = 0 ;
+		try {
+			System.out.println("보자보자 ~~"+comment_number);
+			con=DriverManager.getConnection(url, user, pw);
+			String sql="select count(distinct name) as likecount from kiga_like where comment_number=? ";
+			ps=con.prepareStatement(sql);
+			ps.setInt(1, comment_number);
+			ResultSet rs = 	ps.executeQuery();
+			
+			 if(rs.next()) {
+			 int cnum= comment_number;
+			 likecount=rs.getInt("likecount");
+			 
+			 reviewlikeDTO dto = new reviewlikeDTO();
+			 dto.setReview_like(likecount);
+			 dto.setReview_number(cnum);
+			 
+			 }
+		 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return likecount;
+	}
+	
+	
+	//댓글 리스트 항상 조회
+	public ArrayList<commentDTO> commentlist(int rnum){
+		ArrayList<commentDTO> listcomment = new ArrayList<commentDTO>();
+	try {
+		Class.forName("oracle.jdbc.OracleDriver");
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	
+	try {
+		con=DriverManager.getConnection(url, user, pw);
+		
+		String sql="select * from review_comment c join review r on c.review_number= r.review_number where c.review_number=? order by comment_date";
+	
+		System.out.println("리뷰번호"+rnum);
+		PreparedStatement ps = con.prepareStatement(sql);
+	
+		ps.setInt(1,rnum);
+		
+		ResultSet rs = ps.executeQuery();
+		
+		while(rs.next()) {
+			int cnum=rs.getInt("comment_number");
+			Date date=rs.getDate("comment_date");
+			int reviewnum=rs.getInt("review_number");
+			String content=rs.getString("comment_content");
+			int pw = rs.getInt("comment_password");
+			
+			commentDTO dto = new commentDTO();
+			dto.setComment_content(content);
+			dto.setComment_date(date);
+			dto.setComment_number(cnum);
+			dto.setReview_number(rnum);
+			dto.setComment_password(pw);
+			dto.setReview_number(reviewnum);
+			
+			listcomment.add(dto);
+		}
+		
+		rs.close();
+	
+	} catch (SQLException e) {
+		e.printStackTrace();
+		}
+	return listcomment;
 	}
 }
 

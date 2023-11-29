@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
     <%@ page import="gaeul.review.festivalDTO" %>
-     <%@ page import="gaeul.review.selectDAO" %>
-     <%@ page import="gaeul.review.deleteDAO" %>
+     <%@ page import="gaeul.review.Review_selectDAO" %>
      <%@ page import="java.util.*" %>
 <!DOCTYPE html>
 <html>
@@ -87,19 +86,19 @@
                 </tr>
         
         <%
-                selectDAO fDAO = new selectDAO();
-			        ArrayList<festivalDTO> list =fDAO.List();
-			       
-			        for(festivalDTO f: list){
-			       	String content=f.getReview();
-			       	String title=f.getReview_title();
-			       	Date date=f.getReviewdate();
-			       	String eventname=f.getEvent_name();
+                Review_selectDAO fDAO = new Review_selectDAO();
+                	        ArrayList<festivalDTO> list =fDAO.List();
+                	       
+                	        for(festivalDTO f: list){
+                	       	String content=f.getReview();
+                	       	String title=f.getReview_title();
+                	       	Date date=f.getReviewdate();
+                	  	       	String eventname=f.getEvent_name();
                 %>
                 
                 <!-- 행 내용 -->
         		<tr style="font-size:13px;background:white; " >
-        		<td style="padding:5px;;"><%= eventname%></td>
+        		<td style="padding:5px;"><%= eventname%></td>
                 <td style="width:300px"><a href="choose_result.jsp?review_number=<%=f.getReviewnumber()%>"><%=title%></a></td>
                 <td><%=date%></td>
             

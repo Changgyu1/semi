@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
     <%@ page import="gaeul.review.festivalDTO" %>
-     <%@ page import="gaeul.review.selectDAO" %>
-     <%@ page import="gaeul.review.deleteDAO" %>
+     <%@ page import="gaeul.review.Review_selectDAO" %>
+     <%@ page import="test.deleteDAO" %>
+     <%@ page import="gaeul.review.Review_InsertDAO" %>
      <%@ page import="java.util.*" %>
 <!DOCTYPE html>
 <html>
@@ -55,24 +56,22 @@
 		<h2 style="padding-top:15px">리뷰 작성</h2>
 		<!-- 안에 글넣는 하얀 박스-->
 		<div id="reviewbox">
-		<form  action="insertDAO" method="post">
-			
-			<!-- 축제 선택칸 -->
-				<%
-				System.out.println(request.getParameter("event_number"));
-				%>
+		
+		<form  action="ReviewServlet" method="post">
+				
 			<!-- 제목 입력칸 -->
 			<label for="review_title">제목</label><br>
-			<input type="text" id="review_title" name="review_title" required placeholder="후기 제목을 입력해주세요." style="text-align:center; border: 1px solid gray;" value=""><br>
+			<input type="text" id="review_title" name="review_title" required placeholder="후기 제목을 입력해주세요." style="text-align:center; border: 1px solid gray;" ><br>
 			
 			<!-- 내용 입력칸 -->
 			<label for="review" >내용</label><br>
 			<input type="text" id="review" name="review" required placeholder="후기 내용을 입력해주세요." style="text-align:center; border: 1px solid gray;"><br>
 			
-			<input type="hidden" name="event_number" value="<%=request.getParameter("event_number") %>">
+			<!-- 이벤트번호 전송 -->
+			<input type="hidden" name="event_number" value="<%=request.getParameter("event_number")%>">
 			
+			<input type="submit" name="reviewinsert" value="리뷰등록하기" >
 			
-			<input type="submit" value="리뷰 등록하기" >
 			
 		</form>
 		</div>

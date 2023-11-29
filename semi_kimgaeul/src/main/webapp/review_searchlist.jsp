@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
     <%@ page import="gaeul.review.festivalDTO" %>
-     <%@ page import="gaeul.review.selectDAO" %>
-     <%@ page import="gaeul.review.deleteDAO" %>
+     <%@ page import="gaeul.review.Review_selectDAO" %>
+     <%@ page import="test.deleteDAO" %>
      <%@ page import="java.util.*" %>
      <%@ page import="gaeul.review.commentDTO" %>
      <%@ page import="gaeul.review.select_comment_DAO" %>
@@ -34,8 +34,8 @@
 	    <button type="button" onclick="location.href='join.jsp'" style="width:100px;background:none;border:none;">회원가입</button>
 	    
 	  <%
-	  }
-	  %>
+	    	  }
+	    	  %>
 	    
 	</div>
 
@@ -58,11 +58,10 @@
  	 	<div id="reviewbox">
  	 	
  	 	<%
- 	 	 	selectDAO dao = new selectDAO();
- 			festivalDTO friview = new festivalDTO();
- 			int event_number = Integer.parseInt(request.getParameter("event_number"));
- 			ArrayList<festivalDTO> reviewlist=dao.searchlist(event_number);
- 			
+ 	 	 	 	Review_selectDAO dao = new Review_selectDAO();
+ 	 	 	 	 			festivalDTO friview = new festivalDTO();
+ 	 	 	 	 			int event_number = Integer.parseInt(request.getParameter("event_number"));
+ 	 	 	 	 			ArrayList<festivalDTO> reviewlist=dao.searchlist(event_number);
  	 	 	 	%>
 		<div>
 			<table id=list>

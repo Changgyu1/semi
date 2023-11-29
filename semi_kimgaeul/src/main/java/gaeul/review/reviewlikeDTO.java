@@ -6,6 +6,7 @@ public class reviewlikeDTO {
 	private String name;
 	private int review_like;
 	private int likecount;
+	private int comment_number;
 	
 	public int getLikecount() {
 		return likecount;
@@ -15,6 +16,12 @@ public class reviewlikeDTO {
 	}
 	public int getReview_number() {
 		return review_number;
+	}
+	public int getComment_number() {
+		return comment_number;
+	}
+	public void setComment_number(int comment_number) {
+		this.comment_number = comment_number;
 	}
 	public void setReview_number(int review_number) {
 		this.review_number = review_number;
