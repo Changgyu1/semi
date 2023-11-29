@@ -81,6 +81,7 @@
 					<th>행사명</th>
 					<th>위치</th>
 					<th>총액</th>
+					<th>취소하기</th>
 				</tr>
 				<%
 			
@@ -95,6 +96,10 @@
 			    <td><%=reservation.getEvent_name()%></td>
 			    <td><%=reservation.getEvent_location()%></td>
 			    <td><%=reservation.getTotal()%></td>
+			    <form action="reservation_cancel_form.jsp">
+				    <input type="hidden" name="r_id" value="<%=reservation.getId()%>">
+				    <td><button type="submit">예약취소하기</button></td>
+			    </form>
 			</tr>
 			<%
 			    }
