@@ -1,6 +1,8 @@
 package gaeul.review;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,8 +15,11 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/Review_Servlet")
 public class Review_Servlet extends HttpServlet {
 	
+	
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		
 		//리뷰 작성 버튼 name값 받아오기
 		String reviewinsert=request.getParameter("reviewinsert");
 		//리뷰 수정 버튼 name값 받아오기

@@ -14,6 +14,7 @@
 	<% 
 	int rnum = Integer.parseInt(request.getParameter("rnum"));
 	%>
+	
 
 	<!-- 로고 이미지 -->
 	<img src="로고1.png" id="logo">
@@ -54,10 +55,10 @@
 				<form action="Review_Servlet" method="post">
 				<h4>리뷰 수정하기</h4>
 				<input type="hidden" name="review_number" value="<%=rnum%>">
-				<input type="text" name="review_title" style="text-align:center; height:30px;width:500px;border:1px solid gray;" required placeholder="제목을 입력해주세요.">
+				<input type="text" name="review_title" style="text-align:center; height:30px;width:500px;border:1px solid gray;" value="<%=session.getAttribute("review_title")%>" required placeholder="제목을 입력해주세요.">
 				<br> 
 				<br> 
-				<input type="text" name="review" style="text-align:center; width:500px;height:250px;border:1px solid gray;" required placeholder="내용을 입력해주세요.">
+				<input type="text" name="review" style="text-align:center; width:500px;height:250px;border:1px solid gray;" value="<%=session.getAttribute("content")%>"required placeholder="내용을 입력해주세요.">
 				<br> 
 				<br> 
 				<input type="submit" name="reviewupdate" value="리뷰수정하기" style="background-color:lightgray;border:1px solid gray;width:100px;">

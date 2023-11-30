@@ -1,10 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
     <%@ page import="gaeul.review.festivalDTO" %>
      <%@ page import="gaeul.review.Review_selectDAO" %>
-     <%@ page import="test.deleteDAO" %>
      <%@ page import="java.util.*" %>
      <%@ page import="gaeul.review.commentDTO" %>
-     <%@ page import="gaeul.review.select_comment_DAO" %>
 <!DOCTYPE html>
 <html>
 <head>

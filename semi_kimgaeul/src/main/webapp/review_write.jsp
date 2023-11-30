@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
     <%@ page import="gaeul.review.festivalDTO" %>
      <%@ page import="gaeul.review.Review_selectDAO" %>
-     <%@ page import="test.deleteDAO" %>
      <%@ page import="gaeul.review.Review_InsertDAO" %>
      <%@ page import="java.util.*" %>
 <!DOCTYPE html>
@@ -15,7 +14,6 @@
 </script>
 </head>
 <body>
-
 
 	<!-- 로고 이미지 -->
 	<img src="로고1.png" id="logo">
@@ -71,8 +69,6 @@
 			<input type="hidden" name="event_number" value="<%=request.getParameter("event_number")%>">
 			
 			<input type="submit" name="reviewinsert" value="리뷰등록하기" >
-			
-			
 		</form>
 		</div>
 	 </div>

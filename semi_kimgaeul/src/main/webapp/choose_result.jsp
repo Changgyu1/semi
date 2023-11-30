@@ -63,13 +63,18 @@
  	 	 			
  	 	    		//검색창에서 리뷰 검색결과
  	 	    		int rnum=0;
+ 	 	    		String title;
+ 	 	    		String content;
  	 	            for(int i=0; i<reviewlist.size(); i++){
  	 	            	festivalDTO riviewarray= (festivalDTO) reviewlist.get(i);
  	 	            	rnum = riviewarray.getReviewnumber();
- 	 	            	String content=riviewarray.getReview();
- 	 	            	String title=riviewarray.getReview_title();
+ 	 	            	content=riviewarray.getReview();
+ 	 	            	title=riviewarray.getReview_title();
  	 	            	Date date=riviewarray.getReviewdate();
  	 	            	String eventname = riviewarray.getEvent_name();
+ 	 	            	
+ 	 	            	session.setAttribute("review_title",title);
+ 	 					session.setAttribute("content",content);
  	 	%>
 		        
 		        
@@ -87,8 +92,8 @@
 				    <!-- 게시물 좋아요 부분 -->
 				        <form action="Review_Servlet" method="post">
 				        <input type="hidden" id="review_number" name="review_number" value="<%=rnum%>">
-				        <input type="hidden" id="review_number" name="review_number" value="<%=rnum%>">
-				       <p title="좋아요는 작성자에게 큰 힘이 됩니다."  style="float:right;margin-right:20px;"><input type=submit id="commentlike" name="reviewlike" value="♥" style="font-weight:900;font-size:14px;color:red;"><%=heart%></p>
+				        <input type="hidden" id="name" name="name" value="<%=session.getAttribute("name")%>">
+				       <p title="좋아요는 작성자에게 큰 힘이 됩니다."  style="float:right;margin-right:20px;"><input type=submit id="commentlike" name="reviewlike" value="♥" style="margin-right:6px; font-weight:900;font-size:14px;color:red;"><%=heart%>개</p>
 				        </form>
 				        
 	    
@@ -96,7 +101,7 @@
 				    }else{
 				    	%>
 				    	<!-- 비로그인 시 게시물 좋아요 부분(좋아요 누르기 안됨 개수 조회만 가능)-->
-				    	<p title="좋아요는 작성자에게 큰 힘이 됩니다." style="float:right;margin-right:20px;"><input type=submit id="commentlike"  name="reviewlike" value="♥ <%=heart%>" style="font-weight:900;font-size:14px;color:red;"></p>
+ 					<p title="로그인 후 좋아요를 눌러주세요."  style="float:right;margin-right:20px;"><input type=submit id="commentlike" name="reviewlike" value="♥" style=" margin-right:6px; font-weight:900;font-size:14px;color:red;"><%=heart%>개</p>
 				   <% 
 				    }
 					%>
@@ -173,7 +178,7 @@
 				for(int i=0; i<listcomment.size(); i++){
 					commentDTO riviewarray= (commentDTO) listcomment.get(i);
 					conum=riviewarray.getComment_number();
-					String content=riviewarray.getComment_content();
+					String comment_content=riviewarray.getComment_content();
 					Date codate =riviewarray.getComment_date();
 				%>
 				<%
@@ -181,7 +186,7 @@
 					if(session.getAttribute("email")!=null){
 				    %>
 				    <tr style="padding:10px;">
-						<td style="width:720px;border:none;background-color:rgb(243, 241, 241);font-size:13px;"><%=content %></td>
+						<td style="width:720px;border:none;background-color:rgb(243, 241, 241);font-size:13px;"><%=comment_content %></td>
 						<td style="width:80px;border:none;background-color:rgb(243, 241, 241);font-size:12px;"><%=codate %></td>
 						
 						<!-- 로그인 시 댓글 좋아요 부분 -->
@@ -189,9 +194,10 @@
 						<input type="hidden" id="review_number" name="review_number" value="<%=rnum%>">
 				        <input type="hidden" id="comment_number" name="comment_number" value="<%=conum%>">
 				        <input type="hidden" id="name" name="name" value="<%=session.getAttribute("name")%>">
-				       <td style="height:14px;"><input type=submit id="commentlike" name="commentlike" value="♥" style="font-weight:400;font-size:14px;"><%=commentlike%></td>
+				       <td style="height:14px;"><input title="좋아요 누르기" type=submit id="commentlike" name="commentlike" value="♥" style="margin-right:4px;font-weight:400;font-size:14px;"></td>
+				       <td><%=commentlike%></td>
 				        </form>
-						<td style="border:none;background-color:rgb(243, 241, 241);"><input type="submit" name="commentdelete" value="삭제하기"  onclick="location.href='comment_delete.jsp?conum=<%=conum%>'"></td>	
+						<td style="padding-left:8px;border:none;background-color:rgb(243, 241, 241);"><input type="submit" name="commentdelete" value="삭제하기"  onclick="location.href='comment_delete.jsp?conum=<%=conum%>'"></td>	
 					</tr>
 				        
 					<%
@@ -199,16 +205,18 @@
 				    	%>
 				    	<!-- 비로그인 시 댓글 좋아요 부분 -->
 				    	<tr style="padding:10px;">
-						<td style="width:720px;border:none;background-color:rgb(243, 241, 241);font-size:13px;"><%=content %></td>
+						<td style="width:720px;border:none;background-color:rgb(243, 241, 241);font-size:13px;"><%=comment_content %></td>
 						<td style="width:80px;border:none;background-color:rgb(243, 241, 241);font-size:12px;"><%=codate %></td>
-						<td style="height:14px;"><input type=submit id="commentlike" name="commentlike" value="♥<%=commentlike %>" style="font-weight:400;font-size:14px;color:red"></td>
-						<td style="border:none;background-color:rgb(243, 241, 241);"><div></div><input type="submit" name="commentdelete" value="삭제하기"  onclick="location.href='comment_delete.jsp?conum=<%=conum%>'"></td>	
+						<td style="height:14px;"><input title="로그인 후 좋아요를 눌러주세요." type=submit id="commentlike" value="♥" style="margin-right:4px; font-weight:400;font-size:14px;"></td>
+				        <td><%=commentlike%></td>
+						<td style="padding-left:8px;border:none;background-color:rgb(243, 241, 241);"><div></div><input type="submit" name="commentdelete" value="삭제하기"  onclick="location.href='comment_delete.jsp?conum=<%=conum%>'"></td>	
 					</tr>
 				   <% 
 				    }
 					%>
 				<%
 				}
+				
 				%>
 				</table>
   			  </div>

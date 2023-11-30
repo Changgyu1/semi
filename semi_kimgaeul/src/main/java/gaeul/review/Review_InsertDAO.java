@@ -61,7 +61,7 @@ public class Review_InsertDAO {
 	public int reviewLike(int review_number,String name) {
 		try {
 			con = DriverManager.getConnection(festivalurl, festivaluser, festivalpassword);
-			String sql="insert into kiga_like(review_number,name) values(?,?)";
+			String sql="insert into kiga_like(review_number,name,like_date) values(?,?,sysdate)";
 			
 			PreparedStatement ps = con.prepareStatement(sql);
 			
@@ -82,7 +82,7 @@ public class Review_InsertDAO {
 	public int commentLike(int comment_number,String name) {
 		try {
 			con = DriverManager.getConnection(festivalurl, festivaluser, festivalpassword);
-			String sql="insert into kiga_like(comment_number,name) values(?,?)";
+			String sql="insert into kiga_like(comment_number,name,like_date) values(?,?,sysdate)";
 			
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, comment_number);

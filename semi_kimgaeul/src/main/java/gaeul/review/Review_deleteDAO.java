@@ -22,7 +22,9 @@ public class Review_deleteDAO {
 			String sql="delete from review where review_number=?";
 			ps=con.prepareStatement(sql);
 			ps.setObject(1,deletereview);
-			ps.executeUpdate();
+			
+			return ps.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -30,15 +32,16 @@ public class Review_deleteDAO {
 	}
 	
 	//댓글 삭제하기
-	public int commentDelete(int commentpw,int conum) {
+	public int commentDelete(int comment_password,int comment_number) {
 		try {
 			con=DriverManager.getConnection(url, user, pw);
 			String sql="delete from review_comment where comment_password=? and comment_number=?";
 
 			ps=con.prepareStatement(sql);
-			ps.setInt(1,commentpw);
-			ps.setInt(2, conum);
-			ps.executeUpdate();
+			ps.setInt(1,comment_password);
+			ps.setInt(2, comment_number);
+			
+			return ps.executeUpdate();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
