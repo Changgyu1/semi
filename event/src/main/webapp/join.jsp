@@ -115,40 +115,35 @@ padding: 10px;
                         
                             <form action="registerEmailCheck" method="post">
                                  <div class="label-input-container">
-								        <label for="email">* 이메일</label>
-										<%
-									//String notNull = "a";
-									String useremail=request.getParameter("email");
-									int notNull;
-									try{
-										notNull = Integer.parseInt(request.getParameter("isTrue"));										
-									}catch(NumberFormatException e){
-										e.printStackTrace();
-										notNull = 0;
-									}
-									System.out.println(notNull);
-									System.out.println(useremail);
-									if(useremail!=null && notNull==1){
-								%>
-								<script>alert("사용가능한 아이디입니다.")</script>
-								<input type="email" id="email" name="email" value="<%=request.getParameter("email")%>" class="input-reg" required readonly></th>
-								<input type="submit" value="중복확인" id="emailCheck" name="emailCheck" class="checkButton" disabled></th>						
-								<%}else if(useremail==null && notNull==0){ %>
-									<input type="email" id="email" name="email" class="input-reg" required ></th>
-								<input type="submit" value="중복확인" id="emailCheck" name="emailCheck" class="checkButton" ></th>
-								<%}else {%>
-								<script>alert("중복된 아이디입니다.")</script>
-								<input type="email" id="email" name="email" class="input-reg" required ></th>
-								<input type="submit" value="중복확인" id="emailCheck" name="emailCheck" class="checkButton" ></th>
-								<%} %>
+									<label for="email">* 이메일</label>
+									<%
+										//String notNull = "a";
+										String useremail=request.getParameter("email");
+										int notNull;
+										try{
+											notNull = Integer.parseInt(request.getParameter("isTrue"));										
+										}catch(NumberFormatException e){
+											e.printStackTrace();
+											notNull = 0;
+										}
+										System.out.println(notNull);
+										System.out.println(useremail);
+										if(useremail!=null && notNull==1){
+									%>
+										<script>alert("사용가능한 아이디입니다.")</script>
+										<input type="email" id="email" name="email" value="<%=request.getParameter("email")%>" class="input-reg" required readonly></th>
+										<input type="submit" value="중복확인" id="emailCheck" name="emailCheck" class="checkButton" disabled></th>						
+									<%}else if(useremail==null && notNull==0){ %>
+										<input type="email" id="email" name="email" class="input-reg" required ></th>
+										<input type="submit" value="중복확인" id="emailCheck" name="emailCheck" class="checkButton" ></th>
+									<%}else {%>
+										<script>alert("중복된 아이디입니다.")</script>
+										<input type="email" id="email" name="email" class="input-reg" required ></th>
+										<input type="submit" value="중복확인" id="emailCheck" name="emailCheck" class="checkButton" ></th>
+									<%} %>
 									
-								    </div>
-								    
-					<script>
-
-					</script>
-										
-										
+								 </div>
+							
 								     </form>
 								     <form action="register" method="post" onsubmit="return Check()" class="register-form">
 								     <input type="hidden" id="email" name="email" value="<%=request.getParameter("email")%>">

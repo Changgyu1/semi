@@ -120,9 +120,6 @@
 					<%
 					for (EventPosting p : eventPagination) {
 					%>
-
-
-
 					<div class="pagination">
 						<div class="imagecenter">
 							<a href="Event_Detal.jsp?event_number=<%=p.getEvent_number()%>">
