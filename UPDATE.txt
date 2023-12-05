@@ -14,7 +14,7 @@ UPDATE event SET event_day = '2023-11-11 ~ 2023-12-30' WHERE event_number = 6;
 
 --예약
 update reservation set r_phonenumber='010-5555-555' where r_id=3;
-
+ s
 --문의
 --회원 업데이트
 UPDATE qna SET qna_reply = '행사 일정 변경되어 알려드립니다. 변경된 행사 일정은 2023-10-31입니다.' WHERE qna_number = 1;
