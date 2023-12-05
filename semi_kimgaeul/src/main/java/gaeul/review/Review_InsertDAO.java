@@ -57,8 +57,9 @@ public class Review_InsertDAO {
 		
 	}
 	
-	//리뷰 좋아요 누르기
+	//리뷰 좋아요 누르기, 싫어요
 	public int reviewLike(int review_number,String name) {
+		
 		try {
 			con = DriverManager.getConnection(festivalurl, festivaluser, festivalpassword);
 			String sql="insert into kiga_like(review_number,name,like_date) values(?,?,sysdate)";
