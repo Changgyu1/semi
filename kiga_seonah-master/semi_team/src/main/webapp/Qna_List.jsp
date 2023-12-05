@@ -3,6 +3,10 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="sa_event.Qna" %>
 <%@ page import="sa_event.QnaDAO" %>
+<%
+QnaDAO qnaDAO = new QnaDAO();
+ArrayList<Qna> qnas = qnaDAO.getChoiceQna();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -58,8 +62,6 @@
 					<th style="text-align:center;">이메일 </th>
                 </tr>
                 <%
-                QnaDAO qnaDAO = new QnaDAO();
-                ArrayList<Qna> qnas = qnaDAO.getChoiceQna();
                 for(Qna q : qnas) {
                 %>
               	<tr>
