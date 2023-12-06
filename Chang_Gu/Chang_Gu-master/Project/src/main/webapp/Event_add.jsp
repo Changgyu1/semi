@@ -77,7 +77,7 @@
 	
 	<h3 style="text-align:center;">행사글 작성</h3>
 	<div id="whitebox">
-	<div>
+	<div> 
 <form action="EventServlet" method="post" enctype="multipart/form-data">
 	<div class="event_form">
 	<label for="event_name">행사 제목 : </label>

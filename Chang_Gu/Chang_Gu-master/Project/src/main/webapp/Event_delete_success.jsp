@@ -3,7 +3,7 @@
 <%@ page import="park.event.EventPosting"%>
 <%@ page import="park.event.EventPostingDAO"%>
 <%@ page import = "java.io.PrintWriter" %>
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html>
 <head>
 <meta charset="UTF-8">
