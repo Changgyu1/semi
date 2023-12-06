@@ -1,15 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="EUC-KR">
 <title>Insert title here</title>
 </head>
 <body>
 	<script>
-	alert('ì•„ì•„ë”” ì¤‘ë³µì²´í¬ë¥¼ í•´ì£¼ì„¸ìš”!.')
-	location.href = 'join.jsp';
+	alert('Áßº¹µÈ ¾ÆÀÌµğÀÔ´Ï´Ù.')
+	location.href = 'register.jsp';
 	</script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<meta charset="EUC-KR">
 <title>GO, festival 업데이트 성공</title>
 <link rel="stylesheet" href="review.css">
 <script>
@@ -18,7 +18,7 @@
 
 
 	<!-- 로고 이미지 -->
-	<img src="./image/로고1.png" id="logo" onclick="location.href='home.jsp'">
+	<img src="./image/로고1.png" id="logo">
 
 
 	 <div style="text-align: right; width: 1215px;">

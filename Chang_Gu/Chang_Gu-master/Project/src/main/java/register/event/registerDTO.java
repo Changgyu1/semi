@@ -12,11 +12,6 @@ public class registerDTO {
 		this.email = email;
 	}
 	
-	public registerDTO(String phonenumber, String email) {
-		this.phonenumber = phonenumber;
-		this.email = email;
-	}
-	
 	public registerDTO(String email, String name, String phonenumber, String password) {
 		this.email = email;
 		this.name = name;
