@@ -21,15 +21,14 @@
 					<%
 					int pageNumber = (request.getParameter("page") != null) ? Integer.parseInt(request.getParameter("page")) : 1;
 					int pageSize = 1;
-					
+					//int pageNumber = Integer.parseInt(request.getParameter("page"));
 
 					EventPostingDAO eventPaginationDAO = new EventPostingDAO();
 					List<EventPosting> eventPagination = eventPaginationDAO.getAllProducts(pageNumber, pageSize);
-					int totalEventList = eventPaginationDAO.getTotalProducts();
+					int totalEventList = eventPaginationDAO.getTotalProducts(); //전체 제품 가져오기
 					int totalPages = (int) Math.ceil((double) totalEventList / pageSize);
 					int count = 5;
 					%>
-					
 <script>
 	function loginFail() {
 		alert("로그인에 실패하였습니다.");
@@ -74,25 +73,31 @@
 <body>
 	<div id="wrapper">
 		<!--로고이미지-->
-		<img src="./image/로고1.png" id="logo" onclick="location.href='home.jsp'">
+		<img src="./image/로고1.png" id="logo">
 
-	<!--로그인 버튼-->
- 	 <div style="text-align: right; width: 1215px;">
-    <%
-    if(session.getAttribute("email")!=null){
-    %>
-	 	<button type="button" onclick="location.href='logout.jsp'" style="background:none;border:none;width:75px;">로그아웃</button>
-	 	 <h>|</h>
-	    <button type="button" onclick="location.href='mypage.jsp?email=<%=session.getAttribute("email")%>'" style="background:none;border:none;width:100px;">마이페이지</button>
-	 <%
-	 }else{
-	 %>
-		 <button type="button" onclick="location.href='login.jsp'" style="background:none;border:none;width:60px;">로그인</button>
-		 <h>|</h>
-	    <button type="button" onclick="location.href='join.jsp'" style="background:none;border:none;width:100px;">회원가입</button>
-	  <%
-	  }
-	  %>
+		<!--로그인 버튼-->
+		<div style="text-align: right; width: 1215px;">
+			<%
+			if (session.getAttribute("email") != null) {
+			%>
+			<button type="button" onclick="location.href='logout.jsp'"
+				style="width: 75px;">로그아웃</button>
+			<h>|</h>
+			<button type="button"
+				onclick="location.href='mypageServlet?email=<%=session.getAttribute("email")%>'"
+				style="width: 100px;">마이페이지</button>
+
+			<%
+			} else {
+			%>
+			<button type="button" onclick="location.href='login.jsp'"
+				style="width: 60px;">로그인</button>
+			<h>|</h>
+			<button type="button" onclick="location.href='register.jsp'"
+				style="width: 100px;">회원가입</button>
+			<%
+			}
+			%>
 
 		</div>
 
@@ -120,9 +125,14 @@
 					<%
 					for (EventPosting p : eventPagination) {
 					%>
+
+
+
 					<div class="pagination">
 						<div class="imagecenter">
-							<a href="EventServlet?event_number=<%=p.getEvent_number()%>"> <img src="<%=p.getEvent_img()%>" class="pagination-img"> </a>
+							<a href="Event_Detal.jsp?event_number=<%=p.getEvent_number()%>">
+								<img src="<%=p.getEvent_img()%>" class="pagination-img">
+							</a>
 						</div>
 					</div>
 					<%
@@ -136,9 +146,7 @@
 
 		<button id="pagination-before" name="pagination-before"
 			onclick="pageBefore()">이전</button>
-			
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		
 		<button id="pagination-next" name="pagination-next"
 			onclick="pageNext()">다음</button>
 		</table>

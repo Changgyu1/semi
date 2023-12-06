@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.List" %>
 <%@ page import="sa_event.Qna" %>
 <%@ page import="sa_event.QnaDAO" %>
-<%@ page import="sa_event.QnaComment" %>
+<%
+QnaDAO qnaDAO = new QnaDAO();
+ArrayList<Qna> qnas = qnaDAO.getChoiceQna();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +15,7 @@
 <link rel="stylesheet" href="./saCss/saCss.css">
 </head>
 <body>
-<img src="./image/로고1.png" id="logo" onclick="location.href='home.jsp'">
+<img src="./image/로고1.png" id="logo">
  <!--로그인 버튼-->
     <div style="text-align: right; width: 1215px;">
     <%
@@ -22,16 +24,15 @@
 	 	<button type="button" onclick="location.href='logout.jsp'" style="width:75px;">로그아웃</button>
 	 	 <h>|</h>
 	    <button type="button" onclick="location.href='mypageServlet?email=<%=session.getAttribute("email")%>'" style="width:100px;">마이페이지</button>
-	 <%
-    	}else{
-	 %>
+	<%
+	 	}else{
+	%>
 		 <button type="button" onclick="location.href='login.jsp'" style="width:60px;">로그인</button>
 		 <h>|</h>
 	    <button type="button" onclick="location.href='join.jsp'" style="width:100px;">회원가입</button>
-	  <%
-    	}
-	  %>
-	    
+	<%
+	 	}
+	%>	    
 	</div>
 <div id="buttons">
 		<ul>
@@ -61,8 +62,6 @@
 					<th style="text-align:center;">이메일 </th>
                 </tr>
                 <%
-                QnaDAO qnaDAO = new QnaDAO();
-                ArrayList<Qna> qnas = qnaDAO.getChoiceQna();
                 for(Qna q : qnas) {
                 %>
               	<tr>
@@ -88,7 +87,7 @@
             </table>
             </div>
     	<div class="test">
-      	<input type="submit" value="문의 작성" style="margin-top:300px; width: 85px; height: 34px; border-radius: 5px;"
+      	<input type="submit"  value="문의 작성" style="margin-top:200px; width: 85px; height: 34px; border-radius: 5px;"
       	onclick="location.href='Qna_Write.jsp'">
       	</div>
    	 	

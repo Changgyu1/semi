@@ -12,24 +12,24 @@
 <body>
 <div id="wrapper">
     <!--로고이미지-->
-    <img src="./image/로고1.png" id="logo" onclick="location.href='home.jsp'">
+    <img src="./image/로고1.png" id="logo">
 
     <!--로그인 버튼-->
-  	 <div style="text-align: right; width: 1215px;">
+    <div style="text-align: right; width: 1215px;">
     <%
-    if(session.getAttribute("email")!=null){
+    	if(session.getAttribute("email")!=null){
     %>
-	 	<button type="button" onclick="location.href='logout.jsp'" style="background:none;border:none;width:75px;">로그아웃</button>
+	 	<button type="button" onclick="location.href='logout.jsp'" style="width:75px;">로그아웃</button>
 	 	 <h>|</h>
-	    <button type="button" onclick="location.href='mypageServlet?email=<%=session.getAttribute("email")%>'" style="background:none;border:none;width:100px;">마이페이지</button>
+	    <button type="button" onclick="location.href='mypage.jsp'" style="width:100px;">마이페이지</button>
 	 <%
-	 }else{
+    	}else{
 	 %>
-		 <button type="button" onclick="location.href='login.jsp'" style="background:none;border:none;width:60px;">로그인</button>
+		 <button type="button" onclick="location.href='login.jsp'" style="width:60px;">로그인</button>
 		 <h>|</h>
-	    <button type="button" onclick="location.href='join.jsp'" style="background:none;border:none;width:100px;">회원가입</button>
+	    <button type="button" onclick="location.href='join.jsp'" style="width:100px;">회원가입</button>
 	  <%
-	  }
+    	}
 	  %>
 	
 <!-- 메뉴바 -->

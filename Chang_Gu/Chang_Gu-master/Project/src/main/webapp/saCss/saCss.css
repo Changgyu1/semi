@@ -182,7 +182,7 @@
 
 		#commentdeleteButton{
 			float:right; 
-			margin-right:20px;
+			
 			
 		}
 		
@@ -212,11 +212,13 @@
         }
         
         .test{
-        margin-top:10px;
+        margin-bottom:10px;
         text-align: center;
         }
         
         .test_list{
         text-align: center;
         }
+        
+
   

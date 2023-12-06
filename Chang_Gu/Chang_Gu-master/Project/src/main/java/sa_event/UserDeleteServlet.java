@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,15 +12,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class DeleteServlet
- */
-@WebServlet("/QnaDeleteServlet")
-public class QnaDeleteServlet extends HttpServlet {
+
+@WebServlet("/UserDeleteServlet")
+public class UserDeleteServlet extends HttpServlet {
 	String jdbcURL = "jdbc:oracle:thin:@localhost:1521:xe";
 	String jdbcUsername = "kiga";
 	String jdbcPassword = "kiga1234";
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Connection connection = null;
 		
@@ -34,27 +30,25 @@ public class QnaDeleteServlet extends HttpServlet {
 		try {
 			connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
 			
-			String qna_number = request.getParameter("qna_number");
-			String qna_password = request.getParameter("qna_password");
-
+			String email = request.getParameter("email");
+			String password = request.getParameter("password");
 			
-			String sql = "DELETE FROM qna WHERE qna_password = ? AND qna_number = ?";
+			String sql = "DELETE Users WHERE email = ? AND password = ?";
 			
 			PreparedStatement ps = connection.prepareStatement(sql);
 			
-			ps.setString(1, qna_password);
-			ps.setString(2, qna_number);
+			ps.setString(1, email);
+			ps.setString(2, password);
 			
 			ps.executeUpdate();
 			
-			request.getSession().setAttribute("qna_number", qna_number);
-			request.getSession().setAttribute("qna_password", qna_password);
+			request.getSession().setAttribute("email", email);
+			request.getSession().setAttribute("password", password);
 			
-			response.sendRedirect("Qna_List.jsp");
-			
+			response.sendRedirect("UserDelete.jsp");
 			
 		} catch (SQLException e) {
-			response.sendRedirect("QnaDelete_error.jsp");
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

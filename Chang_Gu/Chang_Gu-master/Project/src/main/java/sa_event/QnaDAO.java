@@ -1,5 +1,6 @@
 package sa_event;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -8,6 +9,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 
 public class QnaDAO {
@@ -24,6 +29,50 @@ public class QnaDAO {
 		}
 		
 	}
+	
+	public int InsertQna(int event_number, String qna_title, String qna_content, int qna_password, String qna_name, String qna_email) {
+		try {
+			connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
+			String sql = "INSERT INTO QNA (event_number, qna_title, qna_content, qna_password, qna_name, qna_date, qna_email) VALUES (?,?,?,?,?,sysdate,?)";
+			PreparedStatement ps = connection.prepareStatement(sql);
+			
+			ps.setInt(1, event_number);
+			ps.setString(2, qna_title);
+			ps.setString(3, qna_content);
+			ps.setInt(4, qna_password);
+			ps.setString(5, qna_name);
+			ps.setString(6, qna_email);
+			
+			ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} return -1;
+		
+	}
+	
+	public int NormalInsertQna(String qna_title, String qna_content, int qna_password, String qna_name, String qna_email) {
+		try {
+			connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
+			String sql = "INSERT INTO QNA (qna_title, qna_content, qna_password, qna_name, qna_date, qna_email) VALUES (?,?,?,?,sysdate,?)";
+			PreparedStatement ps = connection.prepareStatement(sql);
+			
+			ps.setString(1, qna_title);
+			ps.setString(2, qna_content);
+			ps.setInt(3, qna_password);
+			ps.setString(4, qna_name);
+			ps.setString(5, qna_email);
+			
+			return ps.executeUpdate(); //성공할 경우 +1
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		return -1;
+	}	
+
+
 	
 	public ArrayList<Qna> getAllQna(int qna_number) {
 		
@@ -68,6 +117,7 @@ public class QnaDAO {
 		return qnas;
 	}
 	
+	//QnaList
 	public ArrayList<Qna> getChoiceQna(){
 		
 		ArrayList<Qna> qnas = new ArrayList<Qna>();
@@ -138,7 +188,6 @@ public class QnaDAO {
 				int qna_password = resultSet.getInt("qna_password");
 				String qna_name = resultSet.getString("qna_name");
 				Date qna_date = resultSet.getDate("qna_date");
-
 				String qna_email = resultSet.getString("qna_email");
 				
 				 
@@ -150,43 +199,94 @@ public class QnaDAO {
 		}
 		return qna;
 	}
-	public int UpdateQna(String qna_title, String qna_content, int qna_number) {
-		String sql = "UPDATE qna SET qna_title = ?, qna_content = ? WHERE qna_number = ?";
-		Connection conn;
-		try {
-			conn = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, qna_title);
-			ps.setString(2, qna_content);
-			ps.setInt(3, qna_number);
-			return ps.executeUpdate();
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		return -1;
-	}
 	
-	public int UpdateQnaContent(String qna_content, int qna_number) {
-		String sql = "UPDATE qna SET qna_content = ? WHERE qna_number = ?";
-		Connection conn;
-		try {
-			conn = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setString(1, qna_content);
-			ps.setInt(2, qna_number);
+	public int updateQna(String qna_title, String qna_content, int qna_number) {
+	    String sql = "UPDATE qna SET qna_title = ?, qna_content = ? WHERE qna_number = ?";
+	    try (Connection conn = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
+	         PreparedStatement ps = conn.prepareStatement(sql)) {
+	        ps.setString(1, qna_title);
+	        ps.setString(2, qna_content);
+	        ps.setInt(3, qna_number);
+	        return ps.executeUpdate();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return -1;
+	}
+		
+	public int insertLike(int qna_number, String likename, String unlikename) {
+	
+			String sql="INSERT INTO QNA_LIKE (qna_number, likename, unlikename, like_date) VALUES (?,?,?,sysdate)";
+			try {
+				Connection conn = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
+				PreparedStatement ps = conn.prepareStatement(sql);
+				ps.setInt(1, qna_number);
+				ps.setString(2, likename);
+				ps.setString(3, unlikename);
+								
+				return ps.executeUpdate();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 			
-			return ps.executeUpdate();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}return -1;
-	
+		return -1;		
+		
 	}
-
+	
+	public int selectLike(int qna_number) {
+		int qnalike = 0;
+		try {
+			connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
+			String sql = "SELECT COUNT(DISTINCT likename) as qnalike FROM qna_like WHERE qna_number = ?";
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setInt(1, qna_number);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				qnalike = rs.getInt("qnalike");
+				
+				QnaLike q = new QnaLike();
+				
+				q.setQna_number(qna_number);
+				q.setQnaCount(qnalike);
+			}
+	
+		}	
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return qnalike;
+	}
+	
+	public int selectUnlike(int qna_number) {
+		int qnaunlike = 0;
+		try {
+			connection = DriverManager.getConnection(jdbcURL, jdbcUsername, jdbcPassword);
+			String sql = "SELECT COUNT(DISTINCT unlikename) as qnaunlike FROM qna_like WHERE qna_number = ?";
+			PreparedStatement ps = connection.prepareStatement(sql);
+			ps.setInt(1, qna_number);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				qnaunlike = rs.getInt("qnaunlike");
+				
+				QnaLike q = new QnaLike();
+				
+				q.setQna_number(qna_number);
+				q.setQnaCount(qnaunlike);
+			}
+	
+		}	
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return qnaunlike;
+	}
 	
 }
-
 
 	
 

@@ -26,7 +26,7 @@ public class ReservationSearchDAO {
 		try {
 			Connection connection = DriverManager.getConnection(jdbcURL, jdbcUserName, jdbcPassword);
 			
-			//¿¹¾àÁ¶È¸½Ã Ã£À» ¹øÈ£¿Í, ÀÌ¸ÞÀÏ
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¸ï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½È£ï¿½ï¿½, ï¿½Ì¸ï¿½ï¿½ï¿½
 			String sql = "select r.r_id, r.r_email, r.r_phonenumber,person, e.event_name, e.event_day, e.event_location ,(e.event_price*r.person)as total\r\n"
 					+ "from reservation r, event e\r\n"
 					+ "where r.event_number=e.event_number\r\n"

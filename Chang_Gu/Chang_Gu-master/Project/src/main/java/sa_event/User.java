@@ -1,4 +1,5 @@
-package register.event;
+package sa_event;
+
 public class User {
 	private String email;
 	private String name;
