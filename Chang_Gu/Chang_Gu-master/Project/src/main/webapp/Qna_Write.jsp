@@ -3,12 +3,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>일반 문의게시판</title>
-	<link rel="stylesheet" href="./saCss/saCss.css">
+<meta charset="UTF-8">
+<title>일반 문의게시판</title>
+<link rel="stylesheet" href="./saCss/saCss.css">
 </head>
 <body>
-<img src="./image/로고1.png" id="logo">
+<img src="./image/로고1.png" id="logo" onclick="location.href='home.jsp'">
 
  <!--로그인 버튼-->
     <div style="text-align: right; width: 1215px;">
@@ -42,34 +42,37 @@
 	<div id="background">
 	<h3 style="text-align:center;">문의글 작성</h3>
 	<div id="whitebox">
-	
 
-	<!-- QNA게시판에서 일반 문의 작성하는 폼 -->
-	<form action="QnaServlet" method="post">
-		<div class="test"> 
-		<label for="qna_title">제목 : </label>
-		<input type="text" placeholder="제목을 입력해주세요." id="qna_title" name="qna_title" required style="text-align:center;"><br>
+<form action="QnaInsertServlet" method="post">
+	<div class="test"> 
+	<label for="qna_title">제목 : </label>
+	<input type="text" placeholder="제목을 입력해주세요."  
+	id="qna_title" name="qna_title" required style="text-align:center;"><br>
+	
+	<label for="qna_content">내용 : </label>
+	<input type="text" placeholder="내용을 입력해주세요." id="qna_content" name="qna_content" required style="text-align:center;"><br>
 		
-		<label for="qna_content">내용 : </label>
-		<input type="text" placeholder="내용을 입력해주세요." id="qna_content" name="qna_content" required style="text-align:center;"><br>
-			
-		<label for="qna_name">이름 : </label>
-		<input type="text" id="qna_name" name="qna_name" required>
-		
-		<label for="qna_password">비밀번호 : </label>
-		<input type="password" id="qna_password" name="qna_password" required>
-		
-		<label for="qna_email">이메일 : </label>
-		<input type="email" id="qna_email" name="qna_email" required><br><br>
-		
-		<input type="submit" name="NormalInsertQna" value="문의하기" onclick="location.href='Qna_List.jsp'">
-		<input type="submit" value="돌아가기" onclick="location.href='Qna_List.jsp'">
-		</div>
-	</form>
+	<label for="qna_name">이름 : </label>
+	<input type="text" id="qna_name" name="qna_name" required>
+	
+	<label for="qna_password">비밀번호 : </label>
+	<input type="password" id="qna_password" name="qna_password" required>
+	
+	
+	
+	
+	<label for="qna_email">이메일 : </label>
+	<input type="email" id="qna_email" name="qna_email" required><br><br>
+	
+	<input type="submit" value="작성완료" onclick="location.href='Qna_List.jsp'">
+	<input type="submit" value="돌아가기" onclick="location.href='Qna_List.jsp'">
+	</div>
+</form>
 
 	</div>
 	</div>
-	
+
+
 </body>
 </html>
 

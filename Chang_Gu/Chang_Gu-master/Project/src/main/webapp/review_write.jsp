@@ -17,7 +17,7 @@
 
 
 	<!-- 로고 이미지 -->
-	<img src="./image/로고1.png" id="logo">
+	<img src="./image/로고1.png" id="logo" onclick="location.href='home.jsp'">
 
 
 	 <div style="text-align: right; width: 1215px;">

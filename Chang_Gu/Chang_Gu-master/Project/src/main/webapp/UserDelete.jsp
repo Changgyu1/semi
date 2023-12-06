@@ -1,17 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import = "java.io.PrintWriter" %>
-<%@ page import = "sa_event.UserDAO"%>
-<%@ page import = "sa_event.User" %>
+<%@ page import = "register.event.UserDAO"%>
+<%@ page import = "register.event.User" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>회원 탈퇴</title>
-<link rel="stylesheet" href="./saCss/saCss.css">
+<link rel="stylesheet" href="../css/saCss.css">
 </head>
 <body>
-<img src="./image/로고1.png" id="logo">
+	<img src="./image/로고1.png" id="logo" onclick="location.href='home.jsp'">
  <!--로그인 버튼-->
     <div style="text-align: right; width: 1215px;">
     <%
@@ -33,10 +33,10 @@
 	</div>
 	<div id="buttons">
 		<ul>
-			<li onclick="location.href='Event_List.jsp'">행사정보</li>
-			<li onclick="location.href='reservation_search.jsp'">예약조회</li>
-			<li onclick="location.href='Qna_List.jsp'">QNA</li>
 			<li onclick="location.href='review_list.jsp'">후기</li>
+			<li onclick="location.href='Qna_List.jsp'">QNA</li>
+			<li onclick="location.href='reservation_search.jsp'">예약조회</li>
+			<li onclick="location.href='Event_List.jsp'">행사정보</li>
 		</ul>
 	</div>
 <h3>회원 탈퇴</h3>
@@ -64,6 +64,9 @@
 				script.println("</script>");
 			}
 	%>
+	
+	
+
 
 </form>
 </body>

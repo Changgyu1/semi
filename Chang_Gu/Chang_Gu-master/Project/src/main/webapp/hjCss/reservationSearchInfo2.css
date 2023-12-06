@@ -67,7 +67,7 @@
     
     	padding-top:20px;
     	max-width: 1000px;
-        height: 450px;
+        height: 423px;
         margin-left:auto;
         margin-right:auto;
         background-color: #ffffff;
@@ -115,22 +115,53 @@
     
         }
 
- 	.eventlist{
- 	text-align:center;
- 	}
 
+        th{
+        
+            background-color: rgba(161, 161, 161, 0.377);
 
+        }
+
+        th,td{
+
+            border: 1px solid gray;
+            padding: 10px;
+        }
         
         #textbox{
         margin-right:100px;
         }
         
+
+/* �Է� �ʵ� ��Ÿ�� */
+/*input[type="text"],
+input[type="email"],
+ input[type="password"]
+  input[type="submit"]{
+    width: 30%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}*/
+
 ul{
 		list-style:none;
 	}
-	li{
+li#menu{
 		float:right;
 		margin: 6px 224px 0px 0;
-	}
+}
+
+
+div#r_search {
+    margin-top: 123px;
+}
+
+li#info{
+	list-style:none;
+	float:center;
+	margin: 0  47px 36px 0;
 	
-	
+}
+        

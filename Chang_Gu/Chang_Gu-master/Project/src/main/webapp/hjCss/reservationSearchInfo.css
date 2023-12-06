@@ -133,7 +133,7 @@
         }
         
 
-/* ÀÔ·Â ÇÊµå ½ºÅ¸ÀÏ */
+/* ï¿½Ô·ï¿½ ï¿½Êµï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ */
 input[type="text"],
 input[type="email"],
  input[type="password"]{
@@ -143,11 +143,17 @@ input[type="email"],
     border: 1px solid #ccc;
     border-radius: 5px;
 }
-
+input[type="submit"]{
+	width: 100px;
+	    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
 ul{
 		list-style:none;
 	}
-li{
+li#menu{
 		float:right;
 		margin: 6px 224px 0px 0;
 }
@@ -159,6 +165,7 @@ div#r_search {
 
 li#info{
 	list-style:none;
+	float:center;
 	margin: 0  47px 36px 0;
 	
 }
