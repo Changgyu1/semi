@@ -5,33 +5,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>마이페이지</title>
+    <title>GO, FESTIVAL 마이페이지</title>
     <link rel="stylesheet" href="./hjCss/main.css">
 	<link rel="stylesheet" href="./hjCss/reservationCss.css">
 </head>
 <body>
 <div id="wrapper">
     <!--로고이미지-->
-    <img src="./image/로고1.png" id="logo">
+    <img src="./image/로고1.png" id="logo" onclick="location.href='home.jsp'">
 
     <!--로그인 버튼-->
-    <div style="text-align: right; width: 1215px;">
+  	 <div style="text-align: right; width: 1215px;">
     <%
-    	if(session.getAttribute("email")!=null){
+    if(session.getAttribute("email")!=null){
     %>
-	 	<button type="button" onclick="location.href='logout.jsp'" style="width:75px;">로그아웃</button>
+	 	<button type="button" onclick="location.href='logout.jsp'" style="background:none;border:none;width:75px;">로그아웃</button>
 	 	 <h>|</h>
-	    <button type="button" onclick="location.href='mypage.jsp'" style="width:100px;">마이페이지</button>
+	    <button type="button" onclick="location.href='mypageServlet?email=<%=session.getAttribute("email")%>'" style="background:none;border:none;width:100px;">마이페이지</button>
 	 <%
-    	}else{
+	 }else{
 	 %>
-		 <button type="button" onclick="location.href='login.jsp'" style="width:60px;">로그인</button>
+		 <button type="button" onclick="location.href='login.jsp'" style="background:none;border:none;width:60px;">로그인</button>
 		 <h>|</h>
-	    <button type="button" onclick="location.href='register.jsp'" style="width:100px;">회원가입</button>
+	    <button type="button" onclick="location.href='join.jsp'" style="background:none;border:none;width:100px;">회원가입</button>
 	  <%
-    	}
+	  }
 	  %>
-	
 <!-- 메뉴바 -->
   <div id="buttons">
 		<ul>

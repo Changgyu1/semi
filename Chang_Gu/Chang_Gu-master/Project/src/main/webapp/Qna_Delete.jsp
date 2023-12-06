@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="./saCss/saCss.css">
 </head>
 <body>
-<img src="./image/로고1.png" id="logo">
+<img src="./image/로고1.png" id="logo" onclick="location.href='home.jsp'">
  <!--로그인 버튼-->
     <div style="text-align: right; width: 1215px;">
     <%
@@ -20,15 +20,15 @@
 	 	<button type="button" onclick="location.href='logout.jsp'" style="width:75px;">로그아웃</button>
 	 	 <h>|</h>
 	    <button type="button" onclick="location.href='mypageServlet?email=<%=session.getAttribute("email")%>'" style="width:100px;">마이페이지</button>
-	<%
-	 	}else{
-	%>
+	 <%
+    	}else{
+	 %>
 		 <button type="button" onclick="location.href='login.jsp'" style="width:60px;">로그인</button>
 		 <h>|</h>
 	    <button type="button" onclick="location.href='join.jsp'" style="width:100px;">회원가입</button>
-	<%
-	 	}
-	%>
+	  <%
+    	}
+	  %>
 	    
 	</div>
 <div id="buttons">
@@ -57,24 +57,12 @@
 
 <br><br><br>
 
-<%
-	String QnaValue = request.getParameter("qna_number");
-	int qna_number = Integer.parseInt(QnaValue);
-	
-	QnaDAO qnaDAO = new QnaDAO();
-	
-	int result = qnaDAO.DeleteQna(qna_number);
-
-%>
-
-
-
 <div class="qnadeleteBox">
-<form action="QnaServlet" method="post">
+<form action="QnaDeleteServlet" method="post">
 <label for="qna_password" style="text-align:center;">비밀번호를 입력해주세요.</label><br>
 <input type="password" name="qna_password" name="qna_password" required style="text-align:center; width: 200px; height: 30px; border-radius: 5px;">
 <input type="hidden" id="qna_number" name="qna_number" value="<%=session.getAttribute("qna_number") %>">
-<input type="submit" name="Delete" value="삭제하기" style="width: 85px; height: 34px; border-radius: 5px;" onclick="location.href='Qna_List.jsp'">
+<input type="submit" value="삭제" style="width: 85px; height: 34px; border-radius: 5px;" onclick="location.href='Qna_List.jsp'">
 
 </form>
 </div>

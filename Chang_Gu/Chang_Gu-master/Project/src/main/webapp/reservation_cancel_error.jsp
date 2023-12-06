@@ -1,57 +1,56 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
     <!DOCTYPE html>
 <html lang="UTF-8">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GO, FESTIVAL ¿¹¾à</title>
+    <title>GO, FESTIVAL ì˜ˆì•½</title>
     <link rel="stylesheet" href="./hjCss/main.css">
 	<link rel="stylesheet" href="./hjCss/reservationCss.css">
 </head>
 <body>
 <div id="wrapper">
-    <!--·Î°íÀÌ¹ÌÁö-->
-    <img src="./image/·Î°í1.png" id="logo">
+    <!--ë¡œê³ ì´ë¯¸ì§€-->
+    <img src="./image/ë¡œê³ 1.png" id="logo" onclick="location.href='home.jsp'">
 
-    <!--·Î±×ÀÎ ¹öÆ°-->
-    <div style="text-align: right; width: 1215px;">
+    <!--ë¡œê·¸ì¸ ë²„íŠ¼-->
+	 <div style="text-align: right; width: 1215px;">
     <%
-    	if(session.getAttribute("email")!=null){
+    if(session.getAttribute("email")!=null){
     %>
-	 	<button type="button" onclick="location.href='logout.jsp'" style="width:75px;">·Î±×¾Æ¿ô</button>
+	 	<button type="button" onclick="location.href='logout.jsp'" style="background:none;border:none;width:75px;">ë¡œê·¸ì•„ì›ƒ</button>
 	 	 <h>|</h>
-	    <button type="button" onclick="location.href='mypageServlet?email=<%=session.getAttribute("email")%>'" style="width:100px;">¸¶ÀÌÆäÀÌÁö</button>
-  
+	    <button type="button" onclick="location.href='mypageServlet?email=<%=session.getAttribute("email")%>'" style="background:none;border:none;width:100px;">ë§ˆì´íŽ˜ì´ì§€</button>
 	 <%
-    	}else{
+	 }else{
 	 %>
-		 <button type="button" onclick="location.href='login.jsp'" style="width:60px;">·Î±×ÀÎ</button>
+		 <button type="button" onclick="location.href='login.jsp'" style="background:none;border:none;width:60px;">ë¡œê·¸ì¸</button>
 		 <h>|</h>
-	    <button type="button" onclick="location.href='join.jsp'" style="width:100px;">È¸¿ø°¡ÀÔ</button>
+	    <button type="button" onclick="location.href='join.jsp'" style="background:none;border:none;width:100px;">íšŒì›ê°€ìž…</button>
 	  <%
-    	}
+	  }
 	  %>
 	
-<!-- ¸Þ´º¹Ù -->
+<!-- ë©”ë‰´ë°” -->
   <div id="buttons">
 		<ul>
-			<li onclick="location.href='review_list.jsp'">ÈÄ±â</li>
+			<li onclick="location.href='review_list.jsp'">í›„ê¸°</li>
 			<li onclick="location.href='Qna_List.jsp'">QNA</li>
-			<li onclick="location.href='reservation_search.jsp'">¿¹¾àÁ¶È¸</li>
-			<li onclick="location.href='Event_List.jsp'">Çà»çÁ¤º¸</li>
+			<li onclick="location.href='reservation_search.jsp'">ì˜ˆì•½ì¡°íšŒ</li>
+			<li onclick="location.href='Event_List.jsp'">í–‰ì‚¬ì •ë³´</li>
 		</ul>
 	</div>
 
 
-	<!-- °¡¿îµ¥ °¡Àå Å« ¹Ú½º -->
+	<!-- ê°€ìš´ë° ê°€ìž¥ í° ë°•ìŠ¤ -->
 	<div id="background">
 	
-		<h2 style="padding-top:15px">¿¹¾à</h2>
-		<!-- ¾È¿¡ ±Û³Ö´Â ÇÏ¾á ¹Ú½º-->
+		<h2 style="padding-top:15px">ì˜ˆì•½</h2>
+		<!-- ì•ˆì— ê¸€ë„£ëŠ” í•˜ì–€ ë°•ìŠ¤-->
 		<div id="reviewbox">
-            <h1>¿¹¾à Ãë¼Ò ½ÇÆÐ</h1>
-		<p>¿¹¾à Ãë¼Ò°¡ ¾ÈµÇ´Â ¿¹¾à °Ç ÀÔ´Ï´Ù.</p>
+            <h1>ì˜ˆì•½ ì·¨ì†Œ ì‹¤íŒ¨</h1>
+		<p>ì˜ˆì•½ ì·¨ì†Œê°€ ì•ˆë˜ëŠ” ì˜ˆì•½ ê±´ ìž…ë‹ˆë‹¤.</p>
 
         </div>
 	 </div>

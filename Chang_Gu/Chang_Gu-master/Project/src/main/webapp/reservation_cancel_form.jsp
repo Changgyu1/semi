@@ -12,24 +12,24 @@
 <body>
 <div id="wrapper">
     <!--로고이미지-->
-    <img src="./image/로고1.png" id="logo">
+    <img src="./image/로고1.png" id="logo" onclick="location.href='home.jsp'">
 
     <!--로그인 버튼-->
-    <div style="text-align: right; width: 1215px;">
+ 	 <div style="text-align: right; width: 1215px;">
     <%
-    	if(session.getAttribute("email")!=null){
+    if(session.getAttribute("email")!=null){
     %>
-	 	<button type="button" onclick="location.href='logout.jsp'" style="width:75px;">로그아웃</button>
+	 	<button type="button" onclick="location.href='logout.jsp'" style="background:none;border:none;width:75px;">로그아웃</button>
 	 	 <h>|</h>
-	    <button type="button" onclick="location.href='mypage.jsp'" style="width:100px;">마이페이지</button>
+	    <button type="button" onclick="location.href='mypageServlet?email=<%=session.getAttribute("email")%>'" style="background:none;border:none;width:100px;">마이페이지</button>
 	 <%
-    	}else{
+	 }else{
 	 %>
-		 <button type="button" onclick="location.href='login.jsp'" style="width:60px;">로그인</button>
+		 <button type="button" onclick="location.href='login.jsp'" style="background:none;border:none;width:60px;">로그인</button>
 		 <h>|</h>
-	    <button type="button" onclick="location.href='join.jsp'" style="width:100px;">회원가입</button>
+	    <button type="button" onclick="location.href='join.jsp'" style="background:none;border:none;width:100px;">회원가입</button>
 	  <%
-    	}
+	  }
 	  %>
 	
 <!-- 메뉴바 -->
@@ -54,7 +54,7 @@
             <form action="reservationCancel" method="post">
 	        	<p>예약을 취소하시겠습니까?</p>
 	        	<input type="hidden" name="r_id" value="<%=r_id%>">
-	        	<button type="submit">취소하기</button>
+	        	<input type="submit" value="취소하기">
 			</form>
         </div>
 	 </div>

@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>GO, festival 댓글 비밀번호 에러</title>
 
 <link rel="stylesheet" href="review.css">
@@ -18,7 +18,7 @@
 
 
 	<!-- 로고 이미지 -->
-	<img src="로고1.png" id="logo">
+	<img src="./image/로고1.png" id="logo" onclick="location.href='home.jsp'">
 
 
 	 <div style="text-align: right; width: 1215px;">
