@@ -63,14 +63,7 @@
 	    
 	</div>
 	<!-- 메뉴바 -->
-	<div id="buttons">
-		<ul>
-			<li onclick="location.href='review_list.jsp'">후기</li>
-			<li onclick="location.href='Qna_List.jsp'">QNA</li>
-			<li onclick="location.href='reservation_search.jsp'">예약조회</li>
-			<li onclick="location.href='Event_List.jsp'">행사정보</li>
-		</ul>
-	</div>
+
     
     <!-- 가운데 가장 큰 박스 -->
 	<div id="background">
