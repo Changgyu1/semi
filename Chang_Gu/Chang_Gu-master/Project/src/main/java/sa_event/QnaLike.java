@@ -5,7 +5,7 @@ public class QnaLike {
 	private String name;
 	private int qnaCount;
 	private int qnaunlike;
-
+ 
 
 	public int getQna_number() {
 		return qna_number;

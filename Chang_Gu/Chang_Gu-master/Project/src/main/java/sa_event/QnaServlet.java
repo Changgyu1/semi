@@ -20,7 +20,7 @@ import park.event.EventPostingDAO;
  */
 @WebServlet("/QnaServlet")
 public class QnaServlet extends HttpServlet {
-	
+	 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String Delete = request.getParameter("Delete");
